@@ -1,0 +1,30 @@
+<& /site/header.mas, alt => $alt, colour => $colour &>
+    <div id="ticker"></div>
+<& /site/footer.mas, alt => $alt, colour => $colour, height => $height, msg => $msg, rate => $rate &>\
+<%args>
+  $itemH
+  $a    => ''
+  $c    => ''
+  $f    => ''
+  $h    => ''
+  $l    => ''
+  $r    => ''
+  $t    => ''
+  $u    => ''
+</%args>
+<%init>
+  my ( $alt, $char, $colour, $height, $label, $rate, $text, $url );
+
+  $alt  = $a =~ /^([0-9a-fA-F]{3}){1,2}$/ ? $a : $LottoPollo::DEFAULT{ alt };
+
+  $colour = $c =~ /^([0-9a-fA-F]{3}){1,2}$/ ? $c : $LottoPollo::DEFAULT{ colour };
+
+  $height = $h =~ /^[1-5]$/ ? $h : $LottoPollo::DEFAULT{ height };
+
+  $msg = $itemH->{ c_balance };
+
+  $rate = $r =~ /^[1-5]$/ ? $r : $LottoPollo::DEFAULT{ rate };
+
+  $u =~ s/_/./g;
+  $u =~ s/\'/\//g;
+</%init>

@@ -1,0 +1,15 @@
+<%init>
+  Hoo::SetMasonRequestObject( $m );
+  Hoo::DB::Connect( { mysql_enable_utf8 => 1 } );
+
+  $local = ( $ENV{ HTTP_HOST } =~ /^lottopollo$/ );
+
+  $mobile = ( $ENV{ HTTP_USER_AGENT } =~ /(android)|(ipad)|(iphone)|(ipod)|(trident)/i );
+
+  $theme = 1;
+
+  Hoo::HandleURL( { %ARGS } );
+</%init>
+<%cleanup>
+  Hoo::DB::Disconnect();
+</%cleanup>

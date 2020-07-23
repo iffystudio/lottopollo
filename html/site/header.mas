@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- produced by Iffy Studio -->
+<html lang="en">
+  <head>
+    <link href="/css/?<% $local ? rand() : '668' %>" rel="stylesheet">
+    <meta charset="utf-8">
+% if ( $mobile ) {
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+% }
+    <title>Lotto Pollo</title>
+  </head>
+  <body<% $id ? ( ' id="' . $id . '"' ) : '' %>>\
+<%args>
+  $id => undef
+</%args>

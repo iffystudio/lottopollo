@@ -1,0 +1,11 @@
+{ \
+% foreach $style ( sort keys %LottoPollo::STYLES ) {
+<% $first ? '' : ', ' %><% $style %>: <& '/site/' . $style . '/chars.mas' &>\
+%  $first = 0;
+% }
+ }\
+<%init>
+  my ( $first, $style );
+
+  $first = 1;
+</%init>

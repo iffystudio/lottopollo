@@ -1,0 +1,84 @@
+<& /site/header.mas, id => 'info' &>
+    <div id="header"><a href="/">Lotto Pollo</a><a class="td-n" href="/info/">Info</a></div>
+    <div id="content">
+      <p>Combining lotteries with the game of chicken.</p>
+
+      <h2>TL/DR</h2>
+      <ol>
+        <li>Send at least one ether to participate and reset the time period.</li>
+        <li>Once the time period passes without a participant sending ether, the last participant receives all ether sent by all participants.</li>
+        <li>The award, sending address, and time period vary with each lottery.</li>
+      </ol>
+
+      <h2>Monitoring</h2>
+      <p><a href="/">lottopollo.iffy.studio</a></p>
+      <p>A second opinion: see the etherchain.org monitor link on each individual lottery page.</p>
+
+      <h2>Deployed Code</h2>
+      <pre>
+contract lottopollo {
+  address leader;
+  uint    timestamp;
+  
+  function lottopollo() {
+    log(1);
+  }
+  
+  function () {
+    if (timestamp > 0 && now - timestamp > 24 hours) { // "24 hours" is the time period, and varies per lottery
+      msg.sender.send(msg.value);
+      
+      if (this.balance > 0) {
+        leader.send(this.balance);
+        log(4);
+      }
+      else {
+        log(5);
+      }
+    }
+    else if (msg.value >= 1 ether) {
+      leader = msg.sender;
+      timestamp = now;
+      log(2);
+    }
+    else {
+      log(3);
+    }
+  }
+  
+  event log(uint status);
+}</pre>
+
+      <h2>Simplified Code</h2>
+      <p>The above code is what's actually published on the blockchain, and can be used for verification purposes.</p>
+      <p>However, the log calls complicate the logic. The same code with the logging removed is:</p>
+      <pre>
+contract lottopollo {
+  address leader;
+  uint    timestamp;
+    
+  function () {
+    if (timestamp > 0 && now - timestamp > 24 hours) { // "24 hours" is the time period, and varies per lottery
+      msg.sender.send(msg.value);
+
+      if (this.balance > 0) {
+        leader.send(this.balance);
+      }
+    }
+    else if (msg.value >= 1 ether) {
+      leader = msg.sender;
+      timestamp = now;
+    }
+  }
+}</pre>
+      <h2>Additional Notes</h2>
+      <p>Sending more than one ether is supported. The entire amount sent will be added to the balance.</p>
+      <p>Sending less than one ether will also add the entire amount sent to the balance, but will not register the sender as a participant.</p>
+      <p>After the posted time period elapses, the contract does not automatically end; instead, any person can send an arbitrary amount of ether to the contract, which will trigger two events:</p>
+      <ol>
+        <li>The sender will have the sending amount returned.</li>
+        <li>The entire balance will be awarded to the last participant.</li>
+      </ol>
+      <p>Inadvertently sending ether to the contract after it expires will simply return the ether to the sender.</p>
+    </div>
+<& /site/footer.mas &>

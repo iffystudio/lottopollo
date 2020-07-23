@@ -1,0 +1,15 @@
+{ \
+% foreach $style ( sort keys %LottoPollo::STYLES ) {
+<% $first ? '' : ', ' %><% $style %>: [ \
+%  for $i ( 1 .. scalar @{ $LottoPollo::STYLES{ $style }{ tracking } } ) {
+<% $i == 1 ? '' : ', ' %><% $LottoPollo::STYLES{ $style }{ tracking }[ $i - 1 ] %>\
+%  }
+ ]\
+%  $first = 0;
+% }
+ }\
+<%init>
+  my ( $first, $i, $style );
+
+  $first = 1;
+</%init>

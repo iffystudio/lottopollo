@@ -1,0 +1,33 @@
+<& /site/header.mas, id => 'home' &>
+    <div id="header"><a class="td-n" href="/">Lotto Pollo</a><a href="/info/">Info</a></div>
+    <div id="ticker"></div>
+
+    <table class="log">
+      <tr><th>Active Lotteries</th><th>Amount</th><th>Time Period</th><th>Remaining</th></tr>
+% foreach $lotteryH ( @$lotteryAH ) {
+%  if ( ( ! $lotteryH->{ c_timestamp } ) || ( $lotteryH->{ remaining } > $time ) ) {
+%   $value = substr( $lotteryH->{ c_balance }, 0, -18 );
+%   $total += $value;
+        <tr><td class="lottery"><a href="/<% $lotteryH->{ c_address } %>/"><% $lotteryH->{ c_address } %></a><% $lotteryH->{ c_timestamp } ? '' : '&nbsp;(awaiting participants)' %></td><td><span class="blue"><% $value %></span> ETH</span></td><td><% $lotteryH->{ c_seconds_textual } %></td><td><% $lotteryH->{ c_timestamp } ? ( '<span data-remaining="' . ( $lotteryH->{ remaining } ) . '"></span>' ) : $lotteryH->{ c_seconds_formatted } %></td></tr>
+%  }
+% }
+    </table>
+
+    <table class="log" id="dim">
+      <tr><th>Completed Lotteries</th><th>Amount</th></tr>
+% foreach $lotteryH ( @$lotteryAH ) {
+%  if ( $lotteryH->{ c_award } || ( $lotteryH->{ c_timestamp } && ( $lotteryH->{ remaining } < $time ) ) ) {
+%   $value = substr( $lotteryH->{ c_balance } || $lotteryH->{ c_award }, 0, -18 );
+        <tr><td class="lottery"><a href="/<% $lotteryH->{ c_address } %>/"><% $lotteryH->{ c_address } %></a><% $lotteryH->{ c_award } ? '' : '&nbsp;(unclaimed)' %></td><td><% $value %> ETH</span></td></tr>
+%  }
+% }
+    </table>
+<& /site/footer.mas, msg => ( $total . ' eth' ) &>\
+<%init>
+  my ( $gt, $lotteryAH, $lotteryH, $time, $total, $value );
+
+  $time  = time;
+  $total = 0;
+
+  $lotteryAH = Hoo::DB::SelectAH( \'SELECT c_address, c_award, c_balance, c_participant, c_seconds, c_seconds_formatted, c_seconds_textual, c_timestamp, IF( c_timestamp = 0, c_seconds, c_timestamp + c_seconds ) AS remaining FROM t_item ORDER BY remaining LIMIT 2' );
+</%init>

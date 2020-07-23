@@ -1,0 +1,3 @@
+0x73b0ba1c2e1286081dfbac08bcb54b56e5c9a3bb, 0xc2d7d427c8f67cacb3f1627bba5ea09a21dee99f89527aa21a512a86051f9212, 5 minutes, initial private lottery on livenet
+0x0155ce35fe73249fa5d6a29f3b4b7b98732eb2ed, 0xacce46a4bd4d56feb59d434e3f6546c107c7b2472116976b4ccb68b53379a3e5, 24 hours, initial public lottery on livenet
+0x07d0a5ebb9127147dd8f263cb68926d1c3d1e87c, 0xd2dbf6e884f1e34be134fcc8820baa2345b2309cb4229aa9eefc169493cdf773, 24 hours, public lottery on livenet

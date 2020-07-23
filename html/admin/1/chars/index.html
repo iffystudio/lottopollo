@@ -1,0 +1,27 @@
+{\
+% foreach $char ( sort keys $paths ) {
+'<% $char %>':'\
+<path<% $paths->{ $char }{ 1 } ? ' class=on' : '' %> d=m18,1l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+<path<% $paths->{ $char }{ 2 } ? ' class=on' : '' %> d=m60,1l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+<path<% $paths->{ $char }{ 3 } ? ' class=on' : '' %> d=m17,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 4 } ? ' class=on' : '' %> d=m24,19l17,30l0,20l-5,0l-17,-30l0,-20/>\
+<path<% $paths->{ $char }{ 5 } ? ' class=on' : '' %> d=m59,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 6 } ? ' class=on' : '' %> d=m78,19l-17,30l0,20l5,0l17,-30l0,-20/>\
+<path<% $paths->{ $char }{ 7 } ? ' class=on' : '' %> d=m101,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 8 } ? ' class=on' : '' %> d=m18,71l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+<path<% $paths->{ $char }{ 9 } ? ' class=on' : '' %> d=m60,71l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+<path<% $paths->{ $char }{ 10 } ? ' class=on' : '' %> d=m17,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 11 } ? ' class=on' : '' %> d=m36,89l-17,30l0,20l5,0l17,-30l0,-20/>\
+<path<% $paths->{ $char }{ 12 } ? ' class=on' : '' %> d=m59,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 13 } ? ' class=on' : '' %> d=m66,89l17,30l0,20l-5,0l-17,-30l0,-20/>\
+<path<% $paths->{ $char }{ 14 } ? ' class=on' : '' %> d=m101,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/>\
+<path<% $paths->{ $char }{ 15 } ? ' class=on' : '' %> d=m18,141l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+<path<% $paths->{ $char }{ 16 } ? ' class=on' : '' %> d=m60,141l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/>\
+',\
+% }
+'BLANK':'<path d=m59,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m60,1l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m101,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m17,18l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m60,71l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m18,1l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m18,71l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m59,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m101,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m17,88l-8,-8l-8,8l0,52l8,8l8,-8l0,-52zm0,0/><path d=m60,141l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m18,141l-8,8l8,8l24,0l8,-8l-8,-8l-24,0zm0,0/><path d=m24,19l17,30l0,20l-5,0l-17,-30l0,-20/><path d=m78,19l-17,30l0,20l5,0l17,-30l0,-20/><path d=m66,89l17,30l0,20l-5,0l-17,-30l0,-20/><path d=m36,89l-17,30l0,20l5,0l17,-30l0,-20/>'}\\
+<%init>
+  my ( $char, $paths );
+
+  $paths = $LottoPollo::PATHS{ LottoPollo::STYLE_1 };
+</%init>

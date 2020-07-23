@@ -1,0 +1,11 @@
+{ \
+% foreach $style ( sort keys %LottoPollo::STYLES ) {
+<% $first ? '' : ', ' %><% $style %>: '<% $LottoPollo::STYLES{ $style }{ viewbox } %>'\
+%  $first = 0;
+% }
+ }\
+<%init>
+  my ( $first, $style );
+
+  $first = 1;
+</%init>

@@ -1,0 +1,70 @@
+body { background: #000; font-family: monospace; font-size: 16px; margin: 28px; -moz-user-select: none; -webkit-text-size-adjust: none; -webkit-user-select: none; }
+body, html { height: 100%; }
+
+h1, h2 { font-size: 16px; }
+
+table { border-spacing: 0; }
+td, th { padding: 0; }
+th { text-align: left; }
+
+a, body, td, th { color: #ccc; }
+.blue { color: #00d0ff; }
+
+#geth { margin-top: 2px; }
+#geth td { -moz-user-select: text; -webkit-user-select: text; }
+
+#dim a, #dim td, #dim th { color: #666; }
+
+#info { background: #ccc; }
+#info, #info a { color: #111; }
+#info #header { margin-bottom: 34px; }
+#info li { margin-bottom: 9px; }
+
+#info #content { padding: 0 10px 28px; }
+#info h2 { margin-top: 34px; }
+
+#header { border-bottom: 1px solid #666; border-top: 1px solid #666; padding: 6px 10px; }
+#header a { font-weight: bold; }
+#header a:last-child { float: right; }
+
+.log { margin-top: 68px; padding-bottom: 28px; visibility: hidden; width: 100%; }
+.log td, .log th { padding: 6px 10px; }
+.log td, .log th { border-bottom: 1px solid #666; border-left: 1px solid #666; text-align: right; white-space: nowrap; width: 1px; }
+.log th { border-top: 1px solid #666; }
+.log th span { font-weight: normal; }
+.log td:first-child, .log th:first-child { border-left: none; text-align: left; width: auto; }
+
+::-webkit-scrollbar { display: none; }
+
+#ticker { margin-top: 68px; text-align: center; visibility: hidden; white-space: nowrap; -webkit-highlight: none; }
+#ticker svg { height: 100%; }
+
+% foreach $style ( sort keys %LottoPollo::STYLES ) {
+%  foreach $i ( 1 .. scalar @{ $LottoPollo::STYLES{ $style }{ tracking } } ) {
+#ticker.s<% $style %>.h<% $i %> svg { margin-right: <% $LottoPollo::STYLES{ $style }{ tracking }[ $i - 1 ] %>px; }
+%  }
+% }
+
+#ticker path { fill: #808080; fill-opacity: 0.25; }
+#ticker path.on { fill-opacity: 1; }
+
+#ticker rect { fill: #ff5656; height: 10px; stroke: #000; stroke-width: 0; width: 10px; }
+
+#ticker.h1 rect.b, #ticker.h1 rect.r { width: 10.5px; }
+#ticker.h2 rect.b, #ticker.h2 rect.r { width: 10.4px; }
+#ticker.h3 rect.b, #ticker.h3 rect.r { width: 10.3px; }
+#ticker.h4 rect.b, #ticker.h4 rect.r { width: 10.2px; }
+#ticker.h5 rect.b, #ticker.h5 rect.r { width: 10.1px; }
+
+#ticker.h1 rect.b, #ticker.h1 rect.d { height: 10.5px; }
+#ticker.h2 rect.b, #ticker.h2 rect.d { height: 10.4px; }
+#ticker.h3 rect.b, #ticker.h3 rect.d { height: 10.3px; }
+#ticker.h4 rect.b, #ticker.h4 rect.d { height: 10.2px; }
+#ticker.h5 rect.b, #ticker.h5 rect.d { height: 10.1px; }
+
+#ticker svg:last-child { margin-right: 0; }
+
+.td-n { text-decoration: none; }\
+<%init>
+  my ( $i, $style );
+</%init>
